@@ -1,0 +1,11 @@
+::ng-deep .clr-treenode-caret-icon {
+  display: none;
+}
+
+::ng-deep [role="treeitem"][aria-expanded="true"] .clr-treenode-caret::after {
+  content: "▿";
+}
+
+::ng-deep [role="treeitem"][aria-expanded="false"] .clr-treenode-caret::after {
+  content: "▹";
+}
