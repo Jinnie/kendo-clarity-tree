@@ -1,15 +1,8 @@
 <h1>Kendo Clarity Tree Comparison</h1>
 
-<p>There are 4 series of tests run, each with different total nodes. Each test is run with 1000, 3000, 5000, and 10000 nodes. This test is setup with both using a basic lazy loaded tree view with the same numer of nodes and nothing else. Each node will generate a duplicate of the same number of nodes forever.</p>
+<p>There are 4 series of tests run, each with different total nodes. Each test has two parts, testing the time it takes to render the initial top level tree, and then the Expand test compares how long it takes to create and expand the first top level item. Each test is run with 1000, 3000, 5000, and 10000 nodes. This test is setup with both using a basic lazy loaded tree view with the same numer of nodes and nothing else. Each node will generate a duplicate of the same number of nodes forever.</p>
 
 <p>This helps isolate the two implementations and show the comparison in isolation. There may be variance between runs, due to resource allocation and other runtime constraints. However, these tests are running on the same CI/CD pipeline each time, so they should be pretty similar. If there is a large outlier, it should be rerun to see if it persists.</p>
-
-<ol>
-  <li>Clarity Create - This test calculates the total time to render a Clarity tree with a certain numer of top level nodes.</li>
-  <li>Kendo Create - This test calculates the total time to render a Kendo tree with a certain numer of top level nodes.</li>
-  <li>Clarity Expand - This test calculates the total time to render a Clarity tree and then expand the first level with, each with a certain numer of top level nodes.</li>
-  <li>Kendo Expand - This test calculates the total time to render a Kendo tree and then expand the first level with, each with a certain numer of top level nodes.</li>
-</ol>
 
 <highcharts-chart 
   *ngIf="chartOptions.series.length"
@@ -25,62 +18,30 @@
   style="width: 100%; height: 400px; display: block;"
 ></highcharts-chart>
 
+<ol>
+  <li>ClarityTreeComponent - This test calculates the total time to render a Clarity tree with a certain numer of top level nodes.</li>
+  <li>KendooTreeComponent - This test calculates the total time to render a Kendo tree with a certain numer of top level nodes.</li>
+  <li>ClarityDndTreeComponent - This test calculates the total time to render a Clarity tree using some of the same drag and drop directives.</li>
+  <li>ClarityNoIconsComponent - This is an implementation of the Clarity tree without icons to see what the icons impact is.</li>
+</ol>
+
+<p>The Expand version of the test above indicates the test that expands the first top level item.</p>
+
 <h2>Results in a Table</h2>
 
-<table class="table">
-  <tr>
-    <th>Test</th>
-    <th>Kendo Time</th>
-    <th>Clarity Time</th>
-    <th>Difference</th>
-  </tr>
-  <tr>
-    <td>Create 1000</td>
-    <td>{{kendoCreate[0]}}</td>
-    <td>{{clarityCreate[0]}}</td>
-    <td>{{clarityCreate[0] - kendoCreate[0]}} ({{(clarityCreate[0] / kendoCreate[0]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Create 3000</td>
-    <td>{{kendoCreate[1]}}</td>
-    <td>{{clarityCreate[1]}}</td>
-    <td>{{clarityCreate[1] - kendoCreate[1]}} ({{(clarityCreate[1] / kendoCreate[1]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Create 5000</td>
-    <td>{{kendoCreate[2]}}</td>
-    <td>{{clarityCreate[2]}}</td>
-    <td>{{clarityCreate[2] - kendoCreate[2]}} ({{(clarityCreate[2] / kendoCreate[2]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Create 10000</td>
-    <td>{{kendoCreate[3]}}</td>
-    <td>{{clarityCreate[3]}}</td>
-    <td>{{clarityCreate[3] - kendoCreate[3]}} ({{(clarityCreate[3] / kendoCreate[3]) | percent}})</td>
-  </tr>
+<clr-datagrid>
+  <clr-dg-column clrDgField="name">Test</clr-dg-column>
+  <clr-dg-column clrDgField="node1000">1000 Nodes</clr-dg-column>
+  <clr-dg-column clrDgField="node3000">3000 Nodes</clr-dg-column>
+  <clr-dg-column clrDgField="node5000">5000 Nodes</clr-dg-column>
+  <clr-dg-column clrDgField="node10000">10000 Nodes</clr-dg-column>
 
-  <tr>
-    <td>Expand 1000</td>
-    <td>{{kendoExpand[0]}}</td>
-    <td>{{clarityExpand[0]}}</td>
-    <td>{{clarityExpand[0] - kendoExpand[0]}} ({{(clarityExpand[0] / kendoExpand[0]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Expand 3000</td>
-    <td>{{kendoExpand[1]}}</td>
-    <td>{{clarityExpand[1]}}</td>
-    <td>{{clarityExpand[1] - kendoExpand[1]}} ({{(clarityExpand[1] / kendoExpand[1]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Expand 5000</td>
-    <td>{{kendoExpand[2]}}</td>
-    <td>{{clarityExpand[2]}}</td>
-    <td>{{clarityExpand[2] - kendoExpand[2]}} ({{(clarityExpand[2] / kendoExpand[2]) | percent}})</td>
-  </tr>
-  <tr>
-    <td>Expand 10000</td>
-    <td>{{kendoExpand[3]}}</td>
-    <td>{{clarityExpand[3]}}</td>
-    <td>{{clarityExpand[3] - kendoExpand[3]}} ({{(clarityExpand[3] / kendoExpand[3]) | percent}})</td>
-  </tr>
-</table>
+  <clr-dg-row *clrDgItems="let row of chartOptions.series">
+    <clr-dg-cell>{{row.name}}</clr-dg-cell>
+    <clr-dg-cell>{{row.data[0]}}</clr-dg-cell>
+    <clr-dg-cell>{{row.data[1]}}</clr-dg-cell>
+    <clr-dg-cell>{{row.data[2]}}</clr-dg-cell>
+    <clr-dg-cell>{{row.data[3]}}</clr-dg-cell>
+  </clr-dg-row>
+
+</clr-datagrid>

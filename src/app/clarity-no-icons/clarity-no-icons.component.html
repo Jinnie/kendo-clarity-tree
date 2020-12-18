@@ -1,0 +1,11 @@
+<h1>Clarity Tree</h1>
+
+<cni-tree [clrLazy]="true" [@.disabled]="true">
+  <cni-tree-node 
+    *cniRecursiveFor="let item of data | async; getChildren: fetchChildren" 
+    [clrExpanded]="item.id === 1 && expand === true"
+    [clrExpandable]="true"
+  >
+      {{item.text}}
+  </cni-tree-node>
+</cni-tree>

@@ -41,6 +41,6 @@ function inText(text, query) {
 jasmine.getEnv().addReporter({
   specStarted: function(result) {
     console.log(result.fullName);
-    results.push({ test: result.fullName, type: (inText(result.fullName, 'Clarity') ? 'Clarity' : 'Kendo'), time: 0, expand: (result.fullName.indexOf('expand') > -1) ? true : false, count: Number.parseInt(result.fullName.split(' ')[1])});
+    results.push({ test: result.fullName, time: 0, expand: (result.fullName.indexOf('expand') > -1) ? true : false, count: Number.parseInt(result.fullName.split(' ')[1])});
   }
 });

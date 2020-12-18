@@ -1,0 +1,26 @@
+<h1>Clarity DnD Tree</h1>
+
+<clr-tree [clrLazy]="true" [@.disabled]="true">
+  <clr-tree-node *clrRecursiveFor="let file of data | async; getChildren: fetchChildren"
+					[clrExpandable]="file.isFolder" [clrExpanded]="file.id === 1 && expand === true"
+					(clrExpandedChange)="onStateChange(file)">
+  <!-- <ng-container *ngIf="dragAndDropenabled; else treeNodeText">
+    <div #droppable clrDroppable [clrGroup]="dndGroupName" class="vsc-tree-node-text-drop"
+      [class.drop-is-valid]="true"
+      (clrDragEnter)="onDroppableDragEnter($event, file)" (clrDrop)="onDrop($event, file)">
+      <div [clrDraggable]="[file]" class="vsc-tree-node-text-drag" [clrGroup]="dndGroupName"
+        (clrDragStart)="onDragStart()" (clrDragMove)="onDragMove(droppable)"
+        (clrDragEnd)="onDragEnd($event)">
+        <ng-container *ngTemplateOutlet="treeNodeText"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #treeNodeText> -->
+    <div class="clr-treenode-link vsc-tree-node-text" [title]="file.name"
+      [class.active]="file.selected" (click)="onClick(file)">
+      <clr-icon [attr.shape]="file.isFolder ? 'folder' : 'file'"></clr-icon>
+      <span>{{file.text}}</span>
+    </div>
+  <!-- </ng-template> -->
+  </clr-tree-node>
+</clr-tree>

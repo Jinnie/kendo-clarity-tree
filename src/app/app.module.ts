@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,10 @@ import { ClarityTreeComponent } from './clarity-tree/clarity-tree.component';
 import { TreeDataService, TREE_NODES } from './tree-data.service';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartComponent } from './chart/chart.component';
+import { CustomTreeComponent } from './custom-tree/custom-tree.component';
+import { ClarityDndTreeComponent } from './clarity-dnd-tree/clarity-dnd-tree.component';
+import { ClarityNoIconsComponent } from './clarity-no-icons/clarity-no-icons.component';
+import { NoIconTreeViewModule } from './clarity-no-icons/tree-view';
 
 
 @NgModule({
@@ -19,7 +24,10 @@ import { ChartComponent } from './chart/chart.component';
     AppComponent,
     KendoTreeComponent,
     ClarityTreeComponent,
-    ChartComponent
+    ChartComponent,
+    CustomTreeComponent,
+    ClarityDndTreeComponent,
+    ClarityNoIconsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,8 @@ import { ChartComponent } from './chart/chart.component';
     TreeViewModule,
     HighchartsChartModule,
     HttpClientModule,
+    FormsModule,
+    NoIconTreeViewModule,
   ],
   providers: [TreeDataService, { provide: TREE_NODES, useValue: '1000'} ],
   bootstrap: [AppComponent]

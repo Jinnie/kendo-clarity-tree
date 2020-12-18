@@ -13,61 +13,41 @@ export class ChartComponent {
 
   constructor(private http: HttpClient) { }
 
-  kendoExpand = [];
-  kendoCreate = [];
-  clarityExpand = [];
-  clarityCreate = [];
+  series = [0, 1, 2];
 
   ngOnInit() {
     this.http.get(environment.dataUrl).subscribe((results: any[]) => {
-      let kendoCreate = [];
-      let clarityCreate = [];
-      let kendoExpand = [];
-      let clarityExpand = [];
+      const lines = {};
       results.forEach(result => {
         result.count = parseInt(result.count);
-        if (result.type === 'Clarity') {
-          if (result.expand) {
-            clarityExpand.push(result);
-          } else {
-            clarityCreate.push(result);
-          }
-        } else {
-          if (result.expand) {
-            kendoExpand.push(result);
-          } else {
-            kendoCreate.push(result);
-          }
+        let name = result.test.split(' ')[0];
+        console.log(name);
+        if (result.test.indexOf('expand') > -1) {
+          name += 'Expand';
         }
+        if (!lines[name]) {
+          lines[name] = [];
+        }
+        lines[name].push(result);
       });
 
-      this.kendoCreate = kendoCreate = kendoCreate.sort((a, b) => a.count - b.count).map(value => value.time);
-      this.kendoExpand = kendoExpand = kendoExpand.sort((a, b) => a.count - b.count).map(value => value.time);
-      this.clarityCreate = clarityCreate = clarityCreate.sort((a, b) => a.count - b.count).map(value => value.time);
-      this.clarityExpand = clarityExpand = clarityExpand.sort((a, b) => a.count - b.count).map(value => value.time);
+      const series = [];
+      for (let i in lines) {
+        const values = lines[i].sort((a, b) => a.count - b.count).map(value => value.time);
+        series.push({
+          name: i,
+          type: 'line',
+          data: values,
+          node1000: values[0],
+          node3000: values[1],
+          node5000: values[2],
+          node10000: values[3],
+        });
+      }
 
-      this.chartOptions.series = [
-      {
-        name: 'Kendo Create',
-        type: 'line',
-        data: kendoCreate
-      },
-      {
-        name: 'Kendo Expand',
-        type: 'line',
-        data: kendoExpand
-      },
-      {
-        name: 'Clarity Create',
-        type: 'line',
-        data: clarityCreate
-      },
-      {
-        name: 'Clarity Expand',
-        type: 'line',
-        data: clarityExpand
-      },
-    ]
+      this.chartOptions.series = series.sort((a, b) => (a.name > b.name) ? 1 : -1);
+
+      console.log(results, series);
     });
     this.updateFlag = true;
   }

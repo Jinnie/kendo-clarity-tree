@@ -14,7 +14,7 @@ export class TreeDataService {
     const items = [];
     for (let i = 1; i <= Number.parseInt(this.count); i++) {
       const id = (node) ? `${node.id}${i}` : i;
-        items.push({text: "Item " + i, expanded: false, id});
+        items.push({text: "Item " + i, expanded: false, id, isFolder: true, selected: false});
     }
     return of(items);
   }
