@@ -25,4 +25,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: data
-        path: src/assets/data.json
+        path: |
+          src/assets/data.json
+          output.txt
