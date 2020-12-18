@@ -1,27 +1,36 @@
-# H5TreeCompare
+# Clarity and Kendo Comparison
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+View the chart at https://gnomeontherun.github.io/kendo-clarity-tree/chart.
 
-## Development server
+This is a comparason of how long it takes to render various types of Tree Views. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Limitations of this benchmark
 
-## Code scaffolding
+The biggest limitation is that this benchmark does not aggregate successive runs to ensure that the variances between executions are normalized. That could be fixed by taking the results of multiple runs and averaging the values, but has not been implemented.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to work with this
 
-## Build
+You can setup this repo using
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+git clone https://github.com/gnomeontherun/kendo-clarity-tree.git
+cd kendo-clarity-tree
+npm install
+npm start
+```
 
-## Running unit tests
+This will let you view the test website at http://localhost:4200 and view the various demos. You should be able to review the implementations of each tree view this way and see differences. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How to generate the tests
 
-## Running end-to-end tests
+The benchmark uses unit tests that are written the same way to generate structured results. 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+If you want to run the benchmark
 
-## Further help
+## How to create more tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+More tests can be added, probably the easiest way is to copy one of the existing directories like `src/app/clarity-tree` and updating the component names and routes to be unique. 
+
+The unit tests expect that you'll run them in the same way, and use the component in the top level describe. That way the tests can be grouped by example and a JSON file is generated.
+
+The unit tests all expect that your example will allow the top level item can expand by setting the components `expand` property to true. This is imperative for consistency between tests.
