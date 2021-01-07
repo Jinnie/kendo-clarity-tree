@@ -25,7 +25,13 @@ This will let you view the test website at http://localhost:4200 and view the va
 
 The benchmark uses unit tests that are written the same way to generate structured results. 
 
-If you want to run the benchmark
+If you want to run the benchmark, pipe the output of the test to `output.txt`, run the `parse-output.js` file with node, then start the server to view the chart.
+
+```
+npm test > output.txt
+node parse-output
+npm start
+```
 
 ## How to create more tests
 
