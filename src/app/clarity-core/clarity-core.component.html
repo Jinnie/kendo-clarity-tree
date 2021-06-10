@@ -1,0 +1,8 @@
+<h1 (click)="expand = !expand">Clarity Core Tree</h1>
+
+<cds-tree cds-theme="low-motion">
+  <cds-tree-item *ngFor="let item of items" expandable (expandedChange)="onExpandedChange($event, item)"
+                                                       (selectedChange)="onSelectedChange.handleEvent($event)">
+      {{item}}
+    </cds-tree-item>
+</cds-tree>

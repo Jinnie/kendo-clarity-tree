@@ -2,7 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+
+    "paths": {
+      "@cds/core": ["../jeeyun-tree/dist/core"],
+      "@cds/core/*": ["../jeeyun-tree/dist/core/*"],
+      "@cds/core/*/register": ["../jeehun-tree/dist/core/*/register"]
+    }
+
   },
   "files": [
     "src/main.ts",

@@ -1,0 +1,9 @@
+<div role="region" id="treeInfo" aria-live="assertive" cds-layout="display:screen-reader-only">
+  <p id="loadingInfo"></p>
+</div>
+<cds-tree multi-select>
+    <cds-tree-item expandable (expandedChange)="onExpandedChange($event, 'root')"
+                              (selectedChange)="onSelectedChange($event)">
+      root
+    </cds-tree-item>
+</cds-tree>

@@ -1,0 +1,8 @@
+<h1>CDS Angular Tree</h1>
+
+<div role="region" id="treeInfo" aria-live="assertive" cds-layout="display:screen-reader-only">
+  <p id="loadingInfo"></p>
+</div>
+<cds-tree cds-theme="low-motion">
+  <lazy-async-node *ngFor="let item of items" [name]="item" [fetchChildren]="fetchChildren"></lazy-async-node>
+</cds-tree>

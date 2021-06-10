@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -17,6 +17,10 @@ import { CustomTreeComponent } from './custom-tree/custom-tree.component';
 import { ClarityDndTreeComponent } from './clarity-dnd-tree/clarity-dnd-tree.component';
 import { ClarityNoIconsComponent } from './clarity-no-icons/clarity-no-icons.component';
 import { NoIconTreeViewModule } from './clarity-no-icons/tree-view';
+import { ClarityCoreMultiComponent } from './clarity-core-multi/clarity-core-multi.component';
+import { ClarityCoreNgComponent, LazyAsyncNode } from './clarity-core-ng/clarity-core-ng.component';
+import { ClarityCoreComponent } from './clarity-core/clarity-core.component';
+import { CdsModule } from '@cds/angular';
 
 
 @NgModule({
@@ -26,8 +30,12 @@ import { NoIconTreeViewModule } from './clarity-no-icons/tree-view';
     ClarityTreeComponent,
     ChartComponent,
     CustomTreeComponent,
+    ClarityCoreNgComponent,
+    ClarityCoreComponent,
+    ClarityCoreMultiComponent,
     ClarityDndTreeComponent,
-    ClarityNoIconsComponent
+    ClarityNoIconsComponent,
+    LazyAsyncNode
   ],
   imports: [
     BrowserModule,
@@ -39,8 +47,11 @@ import { NoIconTreeViewModule } from './clarity-no-icons/tree-view';
     HttpClientModule,
     FormsModule,
     NoIconTreeViewModule,
+    // ClarityCoreModule,
+    CdsModule,
   ],
   providers: [TreeDataService, { provide: TREE_NODES, useValue: '1000'} ],
-  bootstrap: [AppComponent]
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

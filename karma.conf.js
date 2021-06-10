@@ -28,6 +28,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
+    browserNoActivityTimeout: 50000,
     singleRun: false,
     restartOnFileChange: true,
     webpack: { node: { fs: 'empty', } }

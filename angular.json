@@ -24,6 +24,10 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@cds/city/css/bundles/default.min.css",
+              "node_modules/@cds/core/styles/module.shims.min.css",
+              "node_modules/@cds/core/global.min.css",
+              "node_modules/normalize.css/normalize.css",
               {
                 "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
               },
