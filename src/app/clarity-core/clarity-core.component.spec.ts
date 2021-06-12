@@ -1,9 +1,11 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClrTreeViewModule } from '@clr/angular';
 import { TreeDataService, TREE_NODES } from '../tree-data.service';
 
 import { ClarityCoreComponent } from './clarity-core.component';
+import '@cds/core/tree-view/register';
 
 describe('ClarityCoreComponent 1000', () => {
   let component: ClarityCoreComponent;
@@ -12,7 +14,7 @@ describe('ClarityCoreComponent 1000', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ ClrTreeViewModule, NoopAnimationsModule ],
-      // providers: [ TreeDataService, { provide: TREE_NODES, useValue: '1000' } ],
+      providers: [ TreeDataService, { provide: TREE_NODES, useValue: '1000' } ],
       declarations: [ ClarityCoreComponent ]
     })
     .compileComponents();
@@ -35,7 +37,7 @@ describe('ClarityCoreComponent 1000', () => {
   });
 });
 
-describe('ClarityTreeComponent 3000', () => {
+describe('ClarityCoreTree 3000', () => {
   let component: ClarityCoreComponent;
   let fixture: ComponentFixture<ClarityCoreComponent>;
 
@@ -65,7 +67,7 @@ describe('ClarityTreeComponent 3000', () => {
   });
 });
 
-describe('ClarityTreeComponent 5000', () => {
+describe('ClarityCoreTree 5000', () => {
   let component: ClarityCoreComponent;
   let fixture: ComponentFixture<ClarityCoreComponent>;
 
@@ -95,7 +97,7 @@ describe('ClarityTreeComponent 5000', () => {
   });
 });
 
-describe('ClarityTreeComponent 10000', () => {
+describe('ClarityCoreTree 10000', () => {
   let component: ClarityCoreComponent;
   let fixture: ComponentFixture<ClarityCoreComponent>;
 

@@ -49,7 +49,6 @@ export class ClarityCoreComponent {
   
   ngAfterViewInit() {
     this.firstNode = document.querySelector('cds-tree-item');
-    console.log("FFF", this.firstNode)
   }
 
   fetchChildren = (node: any): Observable<any[]> => this.service.getItems(node);
